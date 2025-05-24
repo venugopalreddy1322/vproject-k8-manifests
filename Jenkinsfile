@@ -1,13 +1,8 @@
 pipeline {
     agent any
-
-    parameters {
-        string(name: 'IMAGE_TAG', defaultValue: '', description: 'New Docker image tag')
-    }
-
     environment {
-        GIT_REPO = 'https://github.com/venugopalreddy1322/k8-manifest.git'
-        GIT_CREDENTIALS_ID = 'git-credentials'
+        GIT_REPO = 'https://github.com/venugopalreddy1322/vproject-k8-manifests.git'
+        GIT_CREDENTIALS_ID = 'github'
     }
 
     stages {
