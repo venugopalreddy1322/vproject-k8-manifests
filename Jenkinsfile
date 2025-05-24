@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout Kubernetes Manifest Repo') {
             steps {
-                git branch: 'main', credentialsId: env.GIT_CREDENTIALS_ID, url: env.GIT_REPO
+                checkout scm
             }
         }
 
