@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         GIT_REPO = 'https://github.com/venugopalreddy1322/vproject-k8-manifests.git'
-        GIT_CREDENTIALS_ID = 'github'
+        //GIT_CREDENTIALS_ID = 'github'
     }
 
     stages {
@@ -17,7 +17,7 @@ pipeline {
                 script {
                     catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                         sh "sed -i 's|image: .*|image: ${params.IMAGE_TAG}|' deployment.yaml"
-                        withCredentials([usernamePassword(credentialsId: env.GIT_CREDENTIALS_ID, usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+                        withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
                             sh "git config --global user.email 'jenkins@company.com'"
                             sh "git config --global user.name 'Jenkins'"
                             sh "git remote set-url origin https://${GIT_USER}:${GIT_PASS}@github.com/venugopalreddy1322/k8-manifest.git"
