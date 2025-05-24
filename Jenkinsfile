@@ -16,10 +16,12 @@ pipeline {
             steps {
                 script {
                     catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+                        sh "cat deployment.yaml"
                         sh "sed -i 's|image: .*|image: ${params.IMAGE_TAG}|' deployment.yaml"
+                        sh "cat deployment.yaml"
                         withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
-                            sh "git config --global user.email 'jenkins@company.com'"
-                            sh "git config --global user.name 'Jenkins'"
+                            sh "git config --global user.email 'venugopalreddy13222@gmail.com.com'"
+                            sh "git config --global user.name 'Venugopal'"
                             sh "git remote set-url origin https://${GIT_USER}:${GIT_PASS}@github.com/venugopalreddy1322/k8-manifest.git"
                             sh "git add deployment.yaml"
                             sh "git commit -m 'Updated image to ${params.IMAGE_TAG}'"
