@@ -1,5 +1,8 @@
 pipeline {
     agent any
+     parameters {
+        string(name: 'DOCKERTAG', description: 'Docker tag to update in manifest')
+    }
     environment {
         GIT_REPO = 'https://github.com/venugopalreddy1322/vproject-k8-manifests.git'
         //GIT_CREDENTIALS_ID = 'github'
