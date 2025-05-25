@@ -22,10 +22,11 @@ pipeline {
                         withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
                             sh "git config --global user.email 'venugopalreddy13222@gmail.com.com'"
                             sh "git config --global user.name 'Venugopal'"
-                            sh "git remote set-url origin https://${GIT_USER}:${GIT_PASS}@github.com/venugopalreddy1322/vproject-k8-manifests.git"
+                            sh 'git remote set-url origin https://${GIT_USER}:${GIT_PASS}@github.com/venugopalreddy1322/vproject-k8-manifests.git'
+                            // Notice for above line single quotes '...' — they avoid interpolation and are safer for secrets.
                             sh "git add deployment.yaml"
                             sh "git commit -m 'Updated image to ${DOCKERTAG}'"
-                            sh "git push origin main"
+                            sh "git push origin HEAD:main"
                         }
                     }
                 }
