@@ -17,7 +17,7 @@ pipeline {
                 script {
                     catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
                         sh "cat deployment.yaml"
-                        sh "sed -i 's|venu1322/vproject.*|venu1322/vproject:${DOCKERTAG}|g' deployment.yaml"
+                        sh "sed -i 's|venu1322/vproject:*|venu1322/vproject:${DOCKERTAG}|g' deployment.yaml"
                         sh "cat deployment.yaml"
                         withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
                             sh "git config --global user.email 'venugopalreddy13222@gmail.com.com'"
