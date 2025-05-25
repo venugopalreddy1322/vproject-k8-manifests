@@ -26,7 +26,7 @@ pipeline {
                             sh 'git remote set-url origin https://${GIT_USER}:${GIT_PASS}@github.com/venugopalreddy1322/vproject-k8-manifests.git'
                             // Notice for above line single quotes '...' — they avoid interpolation and are safer for secrets.
                             sh "git add deployment.yaml"
-                            sh "git commit -m 'Updated image to ${DOCKERTAG}'"
+                            sh "git commit -m 'Updated image to ${DOCKERTAG}' by Jenkins Job"
                             sh "git push origin HEAD:main"
                         }
                     }
