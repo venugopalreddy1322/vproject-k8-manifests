@@ -37,6 +37,6 @@ spec:
   ports:
   - port: 80
     targetPort: 5000
-    NodePort: 31000
+    nodePort: 31000
   selector:
     app: flaskdemo
